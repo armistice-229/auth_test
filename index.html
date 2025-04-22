@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchweizCredit – Ihr vertrauensvoller Partner für Finanzierungen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#10b981',
+                        accent: '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .language-selector {
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header with Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">SC</div>
+                <h1 class="text-2xl font-bold text-primary">SchweizCredit</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-primary font-medium hover:text-secondary transition">Startseite</a>
+                <a href="#offers" class="text-gray-600 hover:text-primary transition">Angebote</a>
+                <a href="#advantages" class="text-gray-600 hover:text-primary transition">Vorteile</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary transition">Kontakt</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="languageBtn" class="language-selector flex items-center space-x-1 px-3 py-2 rounded-full bg-gray-100 text-primary">
+                        <i class="fas fa-globe"></i>
+                        <span>DE</span>
+                    </button>
+                    <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-50">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Deutsch</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">English</a>
+                    </div>
+                </div>
+                <button class="md:hidden text-gray-600" id="mobileMenuBtn">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="text-primary font-medium py-2">Startseite</a>
+                <a href="#offers" class="text-gray-600 py-2">Angebote</a>
+                <a href="#advantages" class="text-gray-600 py-2">Vorteile</a>
+                <a href="#contact" class="text-gray-600 py-2">Kontakt</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">SchweizCredit – Ihr vertrauensvoller Partner für Finanzierungen</h1>
+                <p class="text-xl md:text-2xl mb-8">Schnelle, einfache und sichere Kredite – individuell angepasst.</p>
+                <a href="#contact" class="inline-block bg-secondary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                    Jetzt Kredit anfragen <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loan Calculator Section -->
+    <section class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 bg-primary text-white">
+                        <h2 class="text-2xl font-bold mb-4">Kreditrechner</h2>
+                        <p class="mb-6">Berechnen Sie Ihre monatliche Rate in nur 30 Sekunden.</p>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Kreditbetrag (€)</label>
+                            <input type="range" min="5000" max="780000" value="100000" step="1000" class="w-full mb-2" id="loanAmount">
+                            <div class="flex justify-between">
+                                <span>5.000 €</span>
+                                <span id="loanAmountValue">100.000 €</span>
+                                <span>780.000 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Laufzeit (Jahre)</label>
+                            <input type="range" min="1" max="20" value="10" class="w-full mb-2" id="loanTerm">
+                            <div class="flex justify-between">
+                                <span>1 Jahr</span>
+                                <span id="loanTermValue">10 Jahre</span>
+                                <span>20 Jahre</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2">Zinssatz (%)</label>
+                            <input type="range" min="3" max="8" value="4" step="0.1" class="w-full mb-2" id="interestRate">
+                            <div class="flex justify-between">
+                                <span>3%</span>
+                                <span id="interestRateValue">4%</span>
+                                <span>8%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-xl font-bold mb-6 text-primary">Ihre Kreditübersicht</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span>Kreditbetrag:</span>
+                                <span id="displayAmount" class="font-medium">100.000 €</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Laufzeit:</span>
+                                <span id="displayTerm" class="font-medium">10 Jahre</span>
+                            </div>
+                            <div class="flex justify-between mb-4">
+                                <span>Zinssatz:</span>
+                                <span id="displayRate" class="font-medium">4%</span>
+                            </div>
+                            <div class="border-t pt-4">
+                                <div class="flex justify-between font-bold text-lg">
+                                    <span>Monatliche Rate:</span>
+                                    <span id="monthlyPayment" class="text-secondary">1.012,45 €</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-secondary hover:bg-green-600 text-white font-bold py-3 px-4 rounded transition">
+                            Unverbindliches Angebot anfordern
+                        </button>
+                        
+                        <div class="mt-6 text-sm text-gray-600">
+                            <p>* Beispielberechnung. Der effektive Zinssatz kann variieren.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Unsere Kreditangebote</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Flexible Finanzierungslösungen für jeden Bedarf – transparent und fair.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Personal Loan Card -->
+                <div class="loan-card bg-white border border-gray-200 rounded-xl p-6 transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-euro-sign text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Privatkredit</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Ab 3% effektiver Jahreszins</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>5.000 € bis 780.000 €</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Laufzeit bis 20 Jahre</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Keine Vorfälligkeitsentschädigung</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-full transition">
+                            Mehr erfahren
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Business Loan Card -->
+                <div class="loan-card bg-white border border-gray-200 rounded-xl p-6 transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Geschäftskredit</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Ab 4% effektiver Jahreszins</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>10.000 € bis 1.000.000 €</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Flexible Rückzahlungsmodalitäten</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Schnelle Entscheidung</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-full transition">
+                            Mehr erfahren
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mortgage Card -->
+                <div class="loan-card bg-white border border-gray-200 rounded-xl p-6 transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-primary mb-4">
+                        <i class="fas fa-home text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Immobilienfinanzierung</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Ab 2,5% effektiver Jahreszins</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Bis zu 80% Beleihung</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Laufzeit bis 30 Jahre</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mr-2 mt-1"></i>
+                            <span>Individuelle Tilgungspläne</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="#contact" class="inline-block bg-primary hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-full transition">
+                            Mehr erfahren
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">So einfach geht's</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ihr Kredit in nur 3 Schritten – schnell, digital und sicher.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Anfrage stellen</h3>
+                    <p class="text-gray-600">Füllen Sie unser Online-Formular aus oder kontaktieren Sie uns direkt.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Dokumente einreichen</h3>
+                    <p class="text-gray-600">Laden Sie die erforderlichen Unterlagen in unserem sicheren Portal hoch.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Auszahlung erhalten</h3>
+                    <p class="text-gray-600">Nach positiver Prüfung erhalten Sie Ihr Geld innerhalb von 24 Stunden.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#contact" class="inline-block bg-secondary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition">
+                    Jetzt Kredit beantragen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Warum SchweizCredit?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Vertrauen Sie auf unsere Expertise und Erfahrung in der Finanzbranche.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Sicherheit</h3>
+                    <p class="text-gray-600">Ihre Daten sind bei uns sicher. Wir verwenden modernste Verschlüsselungstechnologien.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Schnelligkeit</h3>
+                    <p class="text-gray-600">Entscheidungen innerhalb von 24 Stunden und Auszahlung am nächsten Werktag.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+                        <i class="fas fa-percent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Günstige Zinsen</h3>
+                    <p class="text-gray-600">Attraktive Konditionen ab 3% effektivem Jahreszins, ohne versteckte Kosten.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Persönlicher Service</h3>
+                    <p class="text-gray-600">Unser Team steht Ihnen jederzeit für Fragen und individuelle Beratung zur Verfügung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Das sagen unsere Kunden</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Erfahren Sie, warum tausende Kunden uns vertrauen.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Kundenfoto" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sabine Müller</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Der Prozess war unglaublich einfach und schnell. Innerhalb von 48 Stunden hatte ich das Geld auf meinem Konto. Vielen Dank für den hervorragenden Service!"</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kundenfoto" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Thomas Bauer</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Als Unternehmer schätze ich die Flexibilität und Transparenz von SchweizCredit. Die Konditionen sind fair und der Service ist erstklassig."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Kundenfoto" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Julia Schmidt</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Die persönliche Beratung hat mir sehr geholfen, die beste Finanzierungslösung für mein Haus zu finden. Klare Empfehlung!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<section id="contact" class="py-16 bg-primary text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Kontaktieren Sie uns</h2>
+        <p class="text-xl max-w-2xl mx-auto">
+          Unser Team steht Ihnen für Fragen und Beratung jederzeit zur Verfügung.
+        </p>
+      </div>
+  
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Infos -->
+          <div>
+            <h3 class="text-xl font-bold mb-6">Kontaktinformationen</h3>
+  
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Telefon & WhatsApp</h4>
+                  <a href="tel:+33752501973" class="hover:underline">+33 7 52 50 19 73</a>
+                </div>
+              </div>
+  
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">E-Mail</h4>
+                  <a href="mailto:schweizcredit@gmail.com" class="hover:underline">schweizcredit@gmail.com</a>
+                </div>
+              </div>
+  
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Öffnungszeiten</h4>
+                  <p>Mo-Fr: 8:00 - 18:00 Uhr</p>
+                  <p>Sa: 9:00 - 13:00 Uhr</p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="mt-8">
+              <h4 class="font-bold mb-4">Folgen Sie uns</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- FORM -->
+          <div class="bg-white rounded-xl p-6 text-gray-800">
+            <h3 class="text-xl font-bold mb-6 text-primary">Kontaktformular</h3>
+            <form id="contact-form">
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Name</label>
+                <input name="name" type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+  
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2">E-Mail</label>
+                <input name="email" type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+  
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Telefon</label>
+                <input name="phone" type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+  
+              <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Betreff</label>
+                <select name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                  <option>Kreditanfrage</option>
+                  <option>Allgemeine Anfrage</option>
+                  <option>Beschwerde</option>
+                  <option>Sonstiges</option>
+                </select>
+              </div>
+  
+              <div class="mb-6">
+                <label class="block text-gray-700 mb-2">Nachricht</label>
+                <textarea name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+              </div>
+  
+              <button type="submit" class="w-full bg-secondary hover:bg-green-600 text-white font-bold py-3 px-4 rounded transition">
+                Nachricht senden
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Häufige Fragen</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Antworten auf die am häufigsten gestellten Fragen.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="faq-item border-b border-gray-200">
+                        <button class="faq-question w-full text-left p-6 hover:bg-gray-50 flex justify-between items-center">
+                            <span class="font-medium text-lg">Welche Unterlagen benötige ich für einen Kreditantrag?</span>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </button>
+                        <div class="faq-answer hidden p-6 pt-0">
+                            <p class="text-gray-600">Für eine erste unverbindliche Anfrage benötigen wir nur wenige Angaben. Für eine verbindliche Kreditzusage benötigen wir in der Regel:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Ausweiskopie</li>
+                                <li>Letzte 3 Gehaltsabrechnungen oder Einkommensnachweise</li>
+                                <li>Mietvertrag oder Eigentumsnachweis</li>
+                                <li>Schufa-Auskunft (kostenlos für Sie)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-gray-200">
+                        <button class="faq-question w-full text-left p-6 hover:bg-gray-50 flex justify-between items-center">
+                            <span class="font-medium text-lg">Wie schnell erhalte ich eine Kreditzusage?</span>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </button>
+                        <div class="faq-answer hidden p-6 pt-0">
+                            <p class="text-gray-600">Nach Einreichung aller erforderlichen Unterlagen erhalten Sie in der Regel innerhalb von 24 Stunden eine vorläufige Zusage. Die endgültige Zusage und Auszahlung erfolgt nach Prüfung aller Dokumente, meist innerhalb von 2-3 Werktagen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item border-b border-gray-200">
+                        <button class="faq-question w-full text-left p-6 hover:bg-gray-50 flex justify-between items-center">
+                            <span class="font-medium text-lg">Gibt es versteckte Kosten oder Gebühren?</span>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </button>
+                        <div class="faq-answer hidden p-6 pt-0">
+                            <p class="text-gray-600">Nein, bei SchweizCredit legen wir Wert auf absolute Transparenz. Alle Kosten werden Ihnen im Vertrag klar aufgeschlüsselt. Es gibt keine versteckten Gebühren oder überraschende Kosten.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question w-full text-left p-6 hover:bg-gray-50 flex justify-between items-center">
+                            <span class="font-medium text-lg">Kann ich meinen Kredit vorzeitig zurückzahlen?</span>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </button>
+                        <div class="faq-answer hidden p-6 pt-0">
+                            <p class="text-gray-600">Ja, eine vorzeitige Rückzahlung ist jederzeit möglich. Bei Privatkrediten berechnen wir keine Vorfälligkeitsentschädigung. Bei Immobilienkrediten können je nach Vertrag geringe Gebühren anfallen, die wir Ihnen vor Vertragsabschluss transparent darlegen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-secondary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Bereit für Ihren Kredit?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Starten Sie jetzt Ihre unverbindliche Anfrage und erhalten Sie innerhalb von 24 Stunden ein Angebot.</p>
+            <a href="#contact" class="inline-block bg-white hover:bg-gray-100 text-secondary font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                Jetzt Kredit anfragen <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">SC</div>
+                        <h3 class="text-xl font-bold">SchweizCredit</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Ihr vertrauensvoller Partner für Finanzierungen in Deutschland.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Unternehmen</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Über uns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Karriere</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Partner</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Rechtliches</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">AGB</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Datenschutz</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Impressum</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Widerrufsrecht</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Abonnieren Sie unseren Newsletter für exklusive Angebote und Finanztipps.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Ihre E-Mail" class="px-4 py-2 rounded-l-lg text-gray-800 w-full">
+                        <button type="submit" class="bg-primary hover:bg-blue-800 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 SchweizCredit. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/33752501973" class="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white text-2xl shadow-lg transition transform hover:scale-110">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("C923phPKur4k49iUx"); // <-- remplace par ton vrai User ID EmailJS
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm("service_3g04iyi", "template_tvlnyzn", this)
+      .then(function() {
+        alert("Nachricht erfolgreich gesendet!");
+        document.getElementById("contact-form").reset();
+      }, function(error) {
+        alert("Fehler beim Senden der Nachricht: " + JSON.stringify(error));
+      });
+  });
+</script>
+
+</body>
+</html>
