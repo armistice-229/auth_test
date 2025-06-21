@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <link rel="shortcut icon" href="2.jpg" type="image/x-icon">
     <style>
+        @keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.3s ease-out forwards;
+}
         :where([class^="ri-"])::before { content: "\f3c2"; }
         body {
             font-family: 'Open Sans', sans-serif;
@@ -764,6 +777,14 @@
             </div>
         </div>
     </footer>
+    <div id="success-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-96 text-center animate-bounce-in">
+    <h2 class="text-2xl font-bold text-green-600 mb-4">Message envoyé !</h2>
+    <p class="text-gray-700">Votre message a bien été transmis. Nous vous répondrons bientôt.</p>
+    <button onclick="closePopup()" class="mt-6 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Fermer</button>
+  </div>
+</div>
+
 <script type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -828,27 +849,35 @@
             calculateLoan();
         });
     </script>
-    
-    <script> const btn = document.getElementById('button');
+
+    <script>
+const btn = document.getElementById('button');
 
 document.getElementById('contact-form')
- .addEventListener('submit', function(event) {
-   event.preventDefault();
+  .addEventListener('submit', function(event) {
+    event.preventDefault();
 
-   
+    const serviceID = 'default_service';
+    const templateID = 'template_tvlnyzn';
 
-   const serviceID = 'default_service';
-   const templateID = 'template_tvlnyzn';
+    emailjs.sendForm(serviceID, templateID, this)
+      .then(() => {
+        showPopup();
+        this.reset(); // pour vider le formulaire
+      }, (err) => {
+        alert("Une erreur s'est produite : " + JSON.stringify(err));
+      });
+  });
 
-   emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      
-      alert('Sent!');
-    }, (err) => {
-     
-      alert(JSON.stringify(err));
-    });
-});</script>
+function showPopup() {
+  document.getElementById('success-popup').classList.remove('hidden');
+}
+
+function closePopup() {
+  document.getElementById('success-popup').classList.add('hidden');
+}
+</script>
+
     
     <script id="mobileMenu">
         document.addEventListener('DOMContentLoaded', function() {
